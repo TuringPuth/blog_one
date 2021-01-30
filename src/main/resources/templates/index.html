@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>博客</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+</head>
+<body>
+
+<!--导航栏-->
+<div th:replace="_fragments :: menu(1)"></div>
+
+
+
+<!--中间-->
+<div class="m-padded-tb-massive">
+    <div class="ui container">
+        <div class="ui stackable grid">
+
+            <!-- 左边-->
+            <div class="eleven wide column">
+
+                <!--头部-->
+                <div class="ui top attached segment m-fontsize-larger">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column m-padding-tb">
+                            <h3 class="ui teal header">博客列表</h3>
+                        </div>
+                        <div class="right aligned column">
+                            共 <h2 th:text="${page.totalElements}" class="ui orange header m-inline-block m-text-thin">14</h2> 篇
+                        </div>
+                    </div>
+                </div>
+
+                <!--主体-->
+                <div class="ui attached segment">
+
+                    <div class="ui padded vertical segment m-padded-tb-big " th:each="blog : ${page.content}" >
+                    <div class="ui middle aligned mobile reversed stackable grid">
+                        <div class="eleven wide column">
+                            <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">SpringBoot搭建博客系统</a></h3>
+                            <p class="m-text" th:text="|${blog.description}...|">SpringBoot搭建博客系统...SpringBoot搭建博客系统...SpringBoot搭建博客系统...SpringBoot搭建博客系统...</p>
+                            <div class="ui grid">
+                                <div class="eleven wide column">
+                                    <div class="ui horizontal link list">
+
+
+                                        <div class="item">
+                                            <img th:src="@{${blog.user.avatar}}"  width="150" height="150" alt="" class="ui avatar image">
+                                            <div class="content">
+                                                <a href="#" target="_blank" class="header" th:text="${blog.user.nickname}">Charlie</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
+                                            <i class="calendar icon"></i><span  th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-10-29</span>
+
+                                            &nbsp   &nbsp   &nbsp
+                                            <i class="eye icon"></i><span th:text="${blog.views}">9999+</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right aligned five wide column">
+                                    <a href="#" th:text="${blog.type.name}"  target="_blank" class="ui teal basic label" >详情</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="five wide column">
+                            <a href="#" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}">
+                                <div class="m-image-box">
+                                    <img th:src="@{${blog.firstPicture}}" src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7" alt="" class="ui centered rounded image m-image">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <!--页脚-->
+                <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
+                    <div class="ui middle aligned two column grid" >
+                        <div class="column">
+                            <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui teal basic button">上一页</a>
+                        </div>
+                        <div class="right aligned column">
+                            <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui teal basic button">下一页</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右边-->
+            <div class="five wide column">
+
+                <!-- Type-->
+                <div class="ui segments">
+                    <div class="ui secondary segment">
+                         <div class="ui two column grid">
+                             <div class="column"><i class="idea icon"></i>分类</div>
+                             <div class="right aligned column">
+                                 <a href="#" th:href="@{/types/-1}" target="_blank">more<i class="angle double right icon"></i></a>
+                             </div>
+                         </div>
+                    </div>
+
+                    <div class="ui teal segment">
+                        <div class="ui fluid vertical menu" >
+                            <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="item" th:each="type : ${types}">
+                                <span th:text="${type.name}">学习日志</span>x
+                                <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Tag-->
+                <div class="ui segments m-margin-top-large">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="column"><i class="tags icon"></i>标签</div>
+                            <div class="right aligned column">
+                                <a href="#" th:href="@{/tags/-1}" target="_blank">more<i class="angle double right icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui teal segment">
+                        <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui teal basic left pointing label m-margin-tb-tiny" th:each="tag : ${tags}">
+                            <span th:text="${tag.name}">方法</span> <div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
+                        </a>
+                    </div>
+                </div>
+
+
+
+                <!-- Recommend-->
+                <div class="ui segments m-margin-top-large">
+                    <div class="ui secondary segment ">
+                        <div class="cloumn">
+                            <i class="bookmark icon"></i>最新推荐
+                        </div>
+                        <div class="ui segment" th:each="blog : ${recommendBlogs}">
+                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black m-padded-tb-tiny" th:text="${blog.getTitle()}">Java虚拟机学习笔记</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- 第四部分-->
+                <h4 class="ui horizontal divider header m-margin-top-large">扫码关注我</h4>
+                <div class="ui centered card"  style="width: 150px">
+                    <img src="static/images/blog1.jpg" alt="" class="ui rounded image" >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<br>
+<br>
+
+<!--底部-->
+<footer   class="ui inverted vertical segment m-padded-tb-massive">
+<div class="ui center aligned container">
+    <div class="ui  inverted divided stackable grid">
+        <div class="three wide column">
+            <img th:src="@{/images/blog1.jpg}" class="ui rounded image" alt="" style="width: 140px">
+        </div>
+        <div class="three wide column">
+            <h4 class="ui inverted header">最新博客 </h4>
+            <div class="ui inverted link list">
+                <a href="#" class="item">用户阿发</a>
+                <a href="#" class="item">用户阿发</a>
+                <a href="#" class="item">用户阿发</a>
+            </div>
+        </div>
+        <div class="three wide column">
+            <h4 class="ui inverted header">联系我 </h4>
+            <div class="ui inverted link list">
+                <a href="#" class="item">用户阿发</a>
+                <a href="#" class="item">用户阿发</a>
+                <a href="#" class="item">用户阿发</a>
+            </div>
+        </div>
+        <div class="seven wide column">
+            <h4 class="ui inverted header">Blog </h4>
+            <div class="ui inverted link list m-opacity0-mini ">
+                <p><font size="5">afnafqbeqvqjlfbqqqenfhbfffffffffffffffffffffffffffff
+                    <br>aaaaaaaaa</font></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui inverted section divider"></div>
+    <p class="m-text-thin  m-text-space m-text-lined m-opacity0-mini">copyright 22222222222</p>
+</div>
+
+</footer>
+
+
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+
+
+
+<script th:inline="javascript">
+    $('.menu.toggle').click(function () {
+       $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $(document).ready(function(){
+        var contentHeight = document.body.offsetHeight,
+            winHeight = document.body.scrollHeight;
+        if(!((contentHeight) < winHeight)){
+            $("#footer").addClass("fixed-bottom");
+        }
+    });
+
+    $('.newblog-container').load(/*[[@{/footer/newblogs}]]*/"/footer/newblogs")
+</script>
+</body>
+</html>

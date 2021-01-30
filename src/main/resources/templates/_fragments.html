@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title th:replace="${title}">详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet"  th:href="@{/css/typo.css}">
+    <link rel="stylesheet"  th:href="@{/css/animate.css-main}">
+    <link rel="stylesheet"  th:href="@{/css/me.css}">
+    <link rel="stylesheet"  th:href="@{/lib/tocbot/tocbot.css}">
+</head>
+<body>
+
+
+<!--导航栏-->
+<nav th:fragment="menu(index)" class="ui inverted attached segment m-padding-tb-mini m-shadow-small" id="header">
+    <div class="ui container m-container-large">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item m-header">Blog</h2>
+            <a href="/"     th:href="@{/}"         class="m-item item m-mobile-hide" th:classappend="${index== 1} ? 'active'"><i class="home icon"></i>首页</a>
+            <a href="types" th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${index== 2} ? 'active'"><i class="idea icon"></i>分类</a>
+            <a href="tags"  th:href="@{/tags/-1}"  class="m-item item m-mobile-hide" th:classappend="${index== 3} ? 'active'"><i class="tags icon"></i>标签</a>
+            <a href="about" th:href="@{/about}"    class="m-item item m-mobile-hide" th:classappend="${index== 4} ? 'active'"><i class="info icon"></i>关于我</a>
+            <div class="right item m-item m-mobile-hide m-margin-tb-small">
+                <form name="search" target="_blank" th:action="@{/search}" method="post">
+                    <div id="blog-container" class="ui icon inverted transparent input">
+                        <input id="query" name="query" type="text" placeholder="Search..." th:value="${query}" autocomplete="off">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui button black icon m-top-right m-mobile-show show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+
+
+<th:block th:fragement="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <script th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+</th:block>
+
+
+
+</body>
+</html>

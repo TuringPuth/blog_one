@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>关于我</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+</head>
+<body>
+
+<!--导航栏-->
+<div th:replace="_fragments :: menu(4)"></div>
+
+
+
+<!--中间-->
+<div class="m-padded-tb-massive">
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="eleven wide column">
+
+                    <img src="../static/images/004.jpg" width="700" height="700" alt="" class="ui rounded image">
+            </div>
+            <div class="five wide column">
+                <div class="ui top attached segment">
+                    <div class="ui header">
+                        关于我
+                    </div>
+                </div>
+                <div class="ui attached segment">
+                <p>斯蒂芬·库里（Stephen Curry，1988年3月14日-），出生于俄亥俄州阿克伦，
+                美国男子篮球运动员，司职控球后卫，现效力于NBA金州勇士队，绰号“萌神”，
+                    与队友汤普森合称“水花兄弟”。其控球娴熟，擅长投射三分，是一名投射能力极为出众的控卫。</p>
+                <p>他2009年被金州勇士队选中进入NBA，随队开启了联盟小球时代，是一名划时代的篮球运动员，职业生涯3次获得总冠军，
+                    2次荣膺常规赛MVP，6次入选最佳阵容（3次一阵、2次二阵、1次三阵），
+                    6次入选全明星，帮助美国男篮夺得2010年世锦赛和2014年世界杯冠军。
+                    2021年1月4日，勇士137-122力克开拓者，库里砍下生涯新高62分。</p>
+                </div>
+                <div class="ui attached segment">
+                    <div class="ui orange basic label">编程 </div>
+                    <div class="ui orange basic label">编程 </div>
+                    <div class="ui orange basic label">编程 </div>
+                    <div class="ui orange basic label">编程 </div>
+
+                </div>
+                <div class="ui attached segment ">
+                    <div class="ui teal basic label ">编程 </div>
+                    <div class="ui teal basic label">编程 </div>
+                    <div class="ui teal basic label">编程 </div>
+                    <div class="ui teal basic label">编程 </div>
+                    <div class="ui teal basic label">编程 </div>
+                    <div class="ui teal basic label m-margin-top-small">编程 </div>
+                    <div class="ui teal basic label">编程 </div>
+                    <div class="ui teal basic label">编程 </div>
+                </div>
+                <div class="ui bottom attached segment">
+                    <a href="#" class="ui circular icon button">
+                        <i class="github icon"></i>
+                    </a>
+                    <a href="#" class="ui wechat circular icon button">
+                        <i class="wechat icon"></i>
+                    </a>
+                    <a href="#" class="ui circular icon button">
+                        <i class="weibo icon"></i>
+                    </a>
+                    <a href="#" class="ui qq circular icon button">
+                        <i class="qq icon"></i>
+                    </a>
+                </div>
+
+                <div class="ui wechatQ flowing popup top left transition hidden">
+                    <img src="../static/images/blog1.jpg" width="100" height="100" alt="" class="ui rounded image">
+                </div>
+
+                <div class="ui QQQ flowing popup top left transition hidden">
+                    <img src="../static/images/blog1.jpg" width="100" height="100" alt="" class="ui rounded image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+
+<!--底部-->
+<footer class="ui inverted vertical segment m-padded-tb-massive">
+<div class="ui center aligned container">
+    <div class="ui  inverted divided stackable grid">
+        <div class="three wide column">
+            <img src="../static/images/blog1.jpg" class="ui rounded image" alt="" style="width: 140px">
+        </div>
+        <div class="three wide column">
+            <h4 class="ui inverted header">最新博客 </h4>
+            <div class="ui inverted link list">
+                <a href="#" class="item">用户阿发</a>
+                <a href="#" class="item">用户阿发</a>
+                <a href="#" class="item">用户阿发</a>
+            </div>
+        </div>
+        <div class="three wide column">
+            <h4 class="ui inverted header">联系我 </h4>
+            <div class="ui inverted link list">
+                <a href="#" class="item">用户阿发</a>
+                <a href="#" class="item">用户阿发</a>
+                <a href="#" class="item">用户阿发</a>
+            </div>
+        </div>
+        <div class="seven wide column">
+            <h4 class="ui inverted header">Blog </h4>
+            <div class="ui inverted link list m-opacity0-mini ">
+                <p><font size="5">afnafqbeqvqjlfbqqqenfhbfffffffffffffffffffffffffffff
+                    <br>aaaaaaaaa</font></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui inverted section divider"></div>
+    <p class="m-text-thin  m-text-space m-text-lined m-opacity0-mini">copyright 22222222222</p>
+</div>
+
+</footer>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+
+
+<script>
+    $('.menu.toggle').click(function () {
+       $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+
+    $('.wechat').popup({
+        popup: $('.wechatQ'),
+        on: 'hover',
+        position: 'bottom center'
+    });
+
+    $('.qq').popup({
+        popup: $('.QQQ'),
+        on: 'hover',
+        position: 'bottom center'
+    });
+
+
+
+</script>
+</body>
+</html>

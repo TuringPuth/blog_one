@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>搜索结果</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+</head>
+<body>
+
+<!--导航栏-->
+<nav class="ui inverted attached segment m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">Blog</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
+            <a href="#" class=" active m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
+
+            <div class="right item m-mobile-hide">
+                <div class="ui icon input">
+                    <input type="text" placeholder="搜索ing">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+
+<!--中间-->
+<div class="m-padded-tb-massive">
+    <div class="ui container">
+
+
+        <div class="ui top attached segment">
+            <div class="ui two column grid">
+                <div class="column">
+                    <h3 class="ui teal header">搜索结果</h3>
+                </div>
+                <div class="right aligned column">
+                    共 <h2 class="ui orange header m-inline-block">14</h2> 个
+                </div>
+            </div>
+        </div>
+
+
+        <!--文章-->
+        <div class="ui attached segment">
+
+            <div class="ui top attached teal segment">
+                <div class="ui padded vertical segment m-padded-tb-big " th:each="blog : ${page.content}" >
+                    <div class="ui middle aligned mobile reversed stackable grid">
+                        <div class="eleven wide column">
+                            <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">SpringBoot搭建博客系统</a></h3>
+                            <p class="m-text" th:text="|${blog.description}...|">SpringBoot搭建博客系统...SpringBoot搭建博客系统...SpringBoot搭建博客系统...SpringBoot搭建博客系统...</p>
+                            <div class="ui grid">
+                                <div class="eleven wide column">
+                                    <div class="ui horizontal link list">
+
+
+                                        <div class="item">
+                                            <img th:src="@{${blog.user.avatar}}"  width="150" height="150" alt="" class="ui avatar image">
+                                            <div class="content">
+                                                <a href="#" target="_blank" class="header" th:text="${blog.user.nickname}">Charlie</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="item">
+                                            <i class="calendar icon"></i><span  th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-10-29</span>
+
+                                            &nbsp   &nbsp   &nbsp
+                                            <i class="eye icon"></i><span th:text="${blog.views}">9999+</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right aligned five wide column">
+                                    <a href="#" th:text="${blog.type.name}"  target="_blank" class="ui teal basic label" >详情</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="five wide column">
+                            <a href="#" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}">
+                                <div class="m-image-box">
+                                    <img th:src="@{${blog.firstPicture}}" src="https://tse4-mm.cn.bing.net/th/id/OIP.Ie53C-X76KBg5Yr5rf6JbgHaDe?w=318&h=164&c=7&o=5&pid=1.7" alt="" class="ui centered rounded image m-image">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+            <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
+                <div class="ui middle aligned two column grid" >
+                    <div class="column">
+                        <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui teal basic button">上一页</a>
+                    </div>
+                    <div class="right aligned column">
+                        <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui teal basic button">下一页</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+
+<!--底部-->
+<footer class="ui inverted vertical segment m-padded-tb-massive">
+<div class="ui center aligned container">
+    <div class="ui  inverted divided stackable grid">
+        <div class="three wide column">
+            <img src="../static/images/blog1.jpg" class="ui rounded image" alt="" style="width: 140px">
+        </div>
+        <div class="three wide column">
+            <h4 class="ui inverted header">最新博客 </h4>
+            <div class="ui inverted link list">
+                <a href="#" class="item">用户阿发</a>
+                <a href="#" class="item">用户阿发</a>
+                <a href="#" class="item">用户阿发</a>
+            </div>
+        </div>
+        <div class="three wide column">
+            <h4 class="ui inverted header">联系我 </h4>
+            <div class="ui inverted link list">
+                <a href="#" class="item">用户阿发</a>
+                <a href="#" class="item">用户阿发</a>
+                <a href="#" class="item">用户阿发</a>
+            </div>
+        </div>
+        <div class="seven wide column">
+            <h4 class="ui inverted header">Blog </h4>
+            <div class="ui inverted link list m-opacity0-mini ">
+                <p><font size="5">afnafqbeqvqjlfbqqqenfhbfffffffffffffffffffffffffffff
+                    <br>aaaaaaaaa</font></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui inverted section divider"></div>
+    <p class="m-text-thin  m-text-space m-text-lined m-opacity0-mini">copyright 22222222222</p>
+</div>
+
+</footer>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+
+
+<script>
+    $('.menu.toggle').click(function () {
+       $('.m-item').toggleClass('m-mobile-hide');
+    });
+</script>
+</body>
+</html>

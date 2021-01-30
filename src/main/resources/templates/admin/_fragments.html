@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title th:replace="${title}">详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet"  th:href="@{/css/typo.css}">
+    <link rel="stylesheet"  th:href="@{/css/animate.css-main}">
+    <link rel="stylesheet"  th:href="@{/css/me.css}">
+    <link rel="stylesheet"  th:href="@{/lib/tocbot/tocbot.css}">
+</head>
+<body>
+
+
+<!--导航栏-->
+<nav th:fragment="menu(n)"  class="ui inverted attached segment m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">管理后台</h2>
+            <a th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n == 1} ?  'active'"><i class="home icon"></i>博客</a>
+            <a th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n == 2} ?  'active'"><i class="idea icon"></i>分类</a>
+            <a th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n == 3} ?  'active'"><i class="tags icon"></i>标签</a>
+
+            <div class="right m-item m-mobile-hide  menu">
+                <div class="ui dropdown  item">
+                    <div class="text">
+                        <img class="ui avatar image" th:src="@{/images/blog1.jpg}">
+                        Charlie Puth
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui button black icon m-top-right m-mobile-show show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+
+
+
+<th:block th:fragement="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <script th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+</th:block>
+
+
+
+</body>
+</html>
